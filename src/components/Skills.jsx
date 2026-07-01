@@ -173,17 +173,17 @@ export const Skills = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center space-y-4 mb-16"
+        className="text-center space-y-3 mb-16"
       >
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono font-bold tracking-widest uppercase">
-          <FaLayerGroup />
-          <span>TECHNICAL ARSENAL</span>
+        <div className="inline-flex items-center space-x-2 text-xs font-mono font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400 light:text-blue-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          <span>// 02. TECHNICAL ARSENAL</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight">
-          Enterprise-Grade <span className="text-blue-500">Tech Stack</span>
+        <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white dark:text-white light:text-slate-900">
+          Enterprise-Grade <span className="text-gradient">Tech Stack</span>
         </h2>
         <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-          A deeply verified engineering stack built to withstand high concurrency, deliver seamless UI interactions, and maintain uncompromised cloud security.
+          A deeply verified engineering stack built to withstand high concurrency, deliver seamless UI interactions, and maintain robust infrastructure.
         </p>
 
         {/* Category Filter Pills */}
@@ -194,8 +194,8 @@ export const Skills = () => {
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2.5 rounded-2xl text-xs font-bold font-mono tracking-wide transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(59,130,246,0.6)] scale-105'
-                  : 'glass-panel text-slate-400 hover:text-white dark:text-slate-400 dark:hover:text-white light:text-slate-600 light:hover:text-slate-900 hover:scale-102'
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 scale-105'
+                  : 'glass-panel text-slate-400 hover:text-white dark:text-slate-400 dark:hover:text-white light:text-slate-600 light:hover:text-slate-900 hover:scale-[1.02]'
               }`}
             >
               {cat}
@@ -216,15 +216,15 @@ export const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`glass-panel p-7 sm:p-9 rounded-3xl flex flex-col justify-between space-y-8 transition-all duration-500 group relative overflow-hidden ${theme.border} ${theme.glow}`}
+              className={`glass-panel p-7 sm:p-9 rounded-[2rem] flex flex-col justify-between space-y-8 transition-all duration-500 group relative overflow-hidden border border-white/10 dark:border-white/10 light:border-slate-200 ${theme.glow}`}
             >
               {/* Top Gradient Line Accent */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Card Header */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="p-4 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-black/5 border border-white/10 dark:border-white/10 light:border-black/10 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                  <div className="p-4 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-200 group-hover:scale-110 transition-transform duration-300 shadow-inner">
                     {theme.icon}
                   </div>
                   <span className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold border ${theme.badgeBg}`}>
@@ -233,8 +233,8 @@ export const Skills = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-black font-display text-white dark:text-white light:text-slate-900 group-hover:text-blue-500 transition-colors flex items-center space-x-2">
-                    <span>{group.category}</span>
+                  <h3 className="text-2xl font-black font-display text-white dark:text-white light:text-slate-900 group-hover:text-blue-400 transition-colors">
+                    {group.category}
                   </h3>
                   <p className={`text-xs font-mono font-bold ${theme.accentColor} mt-1 uppercase tracking-wider`}>
                     {theme.tagline}
@@ -242,8 +242,8 @@ export const Skills = () => {
                 </div>
               </div>
 
-              {/* Skills Proficiency List */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
+              {/* Skills Proficiency Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 py-2">
                 {group.skills.map((skill) => {
                   const isLearning = skill.name.includes('(Learning)');
                   const cleanName = skill.name.replace(' (Learning)', '');
@@ -251,28 +251,28 @@ export const Skills = () => {
                   return (
                     <div
                       key={skill.name}
-                      className="p-3.5 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-black/5 border border-white/5 dark:border-white/5 light:border-black/5 hover:border-white/20 transition-all flex items-center justify-between group/skill shadow-sm"
+                      className="p-3.5 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-slate-100/80 border border-white/5 dark:border-white/5 light:border-slate-200/80 hover:border-white/20 transition-all flex items-center justify-between group/skill shadow-sm"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="p-2.5 rounded-xl bg-black/30 dark:bg-black/30 light:bg-white border border-white/10 dark:border-white/10 light:border-black/10 text-lg flex items-center justify-center group-hover/skill:scale-110 transition-transform shadow-inner">
+                        <div className="p-2.5 rounded-xl bg-slate-950/40 dark:bg-slate-950/40 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 text-lg flex items-center justify-center group-hover/skill:scale-110 transition-transform shadow-inner">
                           {getSkillIcon(cleanName)}
                         </div>
                         <span className="text-xs font-bold text-white dark:text-white light:text-slate-900 tracking-wide">
                           {cleanName}
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-white/5 dark:bg-white/5 light:bg-black/5 text-slate-400 dark:text-slate-400 light:text-slate-600 border border-white/5 dark:border-white/5 light:border-black/5 font-semibold">
-                        {isLearning ? 'Learning' : skill.level}
+                      <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-white/5 dark:bg-white/5 light:bg-white text-slate-400 dark:text-slate-400 light:text-slate-600 border border-white/5 dark:border-white/5 light:border-slate-200 font-semibold">
+                        {isLearning ? 'Learning' : 'Expert'}
                       </span>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Real-World Workload Deliverables Checklist */}
-              <div className="pt-5 border-t border-white/10 dark:border-white/10 light:border-black/10 space-y-2.5">
+              {/* Core Capabilities Checklist */}
+              <div className="pt-5 border-t border-white/10 dark:border-white/10 light:border-slate-200 space-y-2.5">
                 <div className="text-[11px] font-mono font-bold text-slate-400 dark:text-slate-400 light:text-slate-500 uppercase tracking-wider">
-                  Core Engineering Capabilities:
+                  Core Engineering Focus:
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 font-medium">
                   {theme.highlights.map((item, hIdx) => (

@@ -1,82 +1,112 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaTrophy, FaStar, FaChartLine, FaGraduationCap, FaCodeBranch } from 'react-icons/fa';
+import { FaTrophy, FaChartLine, FaGraduationCap, FaCheckCircle } from 'react-icons/fa';
 import { ACHIEVEMENTS_DATA } from '../data/portfolioData';
 
 export const Achievements = () => {
-  const icons = [
-    <FaCodeBranch className="text-2xl text-blue-500" />,
-    <FaTrophy className="text-2xl text-amber-400" />,
-    <FaChartLine className="text-2xl text-sky-400" />,
-    <FaGraduationCap className="text-2xl text-purple-400" />,
-  ];
+  const getIconAndAccent = (idx) => {
+    switch (idx) {
+      case 0:
+        return {
+          icon: <FaTrophy className="text-xl text-amber-400" />,
+          accent: "from-amber-500 to-orange-500",
+          glow: "group-hover:shadow-[0_0_35px_rgba(245,158,11,0.2)]",
+          badgeBg: "bg-amber-500/10 text-amber-300 border-amber-500/30"
+        };
+      case 1:
+        return {
+          icon: <FaChartLine className="text-xl text-blue-400" />,
+          accent: "from-blue-500 to-indigo-500",
+          glow: "group-hover:shadow-[0_0_35px_rgba(59,130,246,0.2)]",
+          badgeBg: "bg-blue-500/10 text-blue-300 border-blue-500/30"
+        };
+      default:
+        return {
+          icon: <FaGraduationCap className="text-xl text-purple-400" />,
+          accent: "from-purple-500 to-pink-500",
+          glow: "group-hover:shadow-[0_0_35px_rgba(168,85,247,0.2)]",
+          badgeBg: "bg-purple-500/10 text-purple-300 border-purple-500/30"
+        };
+    }
+  };
 
   return (
-    <section id="achievements" className="py-20 px-4 sm:px-6 relative z-10 max-w-6xl mx-auto">
+    <section id="achievements" className="py-24 px-4 sm:px-6 relative z-10 max-w-6xl mx-auto">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center space-y-4 mb-14"
+        className="text-center space-y-3 mb-16"
       >
-        <span className="text-xs font-mono font-bold tracking-widest text-blue-500 uppercase">
-          // 05. RECORD OF EXCELLENCE
-        </span>
-        <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight">
-          Key <span className="text-blue-500">Achievements</span>
+        <div className="inline-flex items-center space-x-2 text-xs font-mono font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400 light:text-blue-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          <span>// 04. RECORD OF EXCELLENCE</span>
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white dark:text-white light:text-slate-900">
+          Key <span className="text-gradient">Achievements</span>
         </h2>
-        <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
-          Proven problem-solving rigor across nationwide examinations and algorithmic leaderboards.
+        <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+          Proven problem-solving rigor across nationwide examinations, competitive programming, and academic excellence.
         </p>
       </motion.div>
 
-      {/* Grid of Animated Counter Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {ACHIEVEMENTS_DATA.map((item, idx) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-            whileHover={{ scale: 1.05 }}
-            className="glass-panel p-6 sm:p-7 rounded-3xl flex flex-col justify-between space-y-5 hover:border-blue-500/60 transition-all shadow-xl group cursor-default relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none group-hover:bg-blue-500/15 transition-all" />
+      {/* Grid of Achievement Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {ACHIEVEMENTS_DATA.map((item, idx) => {
+          const theme = getIconAndAccent(idx);
 
-            <div className="flex items-center justify-between">
-              <div className="p-3 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-black/5 border border-white/10 dark:border-white/10 light:border-black/10 group-hover:scale-110 transition-transform">
-                {idx === 0 ? <FaTrophy className="text-blue-500 text-xl" /> :
-                 idx === 1 ? <FaChartLine className="text-sky-400 text-xl" /> :
-                 <FaGraduationCap className="text-purple-400 text-xl" />}
+          return (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              whileHover={{ y: -5 }}
+              className={`glass-panel p-7 sm:p-8 rounded-[2rem] flex flex-col justify-between space-y-6 transition-all duration-500 group cursor-default relative overflow-hidden border border-white/10 dark:border-white/10 light:border-slate-200 ${theme.glow}`}
+            >
+              {/* Background ambient radial */}
+              <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-500/10 via-violet-500/5 to-transparent rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+
+              {/* Top Row: Icon & Verified Badge */}
+              <div className="flex items-center justify-between relative z-10">
+                <div className="p-3.5 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-200 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                  {theme.icon}
+                </div>
+                <span className={`inline-flex items-center space-x-1 text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${theme.badgeBg}`}>
+                  <FaCheckCircle className="text-[10px]" />
+                  <span>VERIFIED</span>
+                </span>
               </div>
-              <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                VERIFIED
-              </span>
-            </div>
 
-            <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black font-display text-white dark:text-white light:text-slate-900 group-hover:text-blue-400 transition-colors flex items-baseline">
-                <span>{item.value}</span>
-                <span className="text-xl sm:text-2xl text-blue-500 ml-0.5">{item.suffix}</span>
+              {/* Middle Row: Big Number & Label */}
+              <div className="space-y-1 relative z-10">
+                <div className="text-4xl sm:text-5xl font-black font-display text-white dark:text-white light:text-slate-900 group-hover:text-blue-400 transition-colors flex items-baseline tracking-tight">
+                  <span>{item.value}</span>
+                  <span className="text-2xl sm:text-3xl text-gradient ml-0.5 font-bold">{item.suffix}</span>
+                </div>
+                <p className="text-xs font-mono font-bold text-slate-400 dark:text-slate-400 light:text-slate-600 uppercase tracking-wider">
+                  {item.label}
+                </p>
               </div>
-              <p className="text-xs font-mono font-bold text-slate-400 dark:text-slate-400 light:text-slate-600 uppercase tracking-wider">
-                {item.label}
-              </p>
-            </div>
 
-            <div className="space-y-1 pt-3 border-t border-white/5 dark:border-white/5 light:border-black/5">
-              <p className="text-xs font-bold text-white dark:text-white light:text-slate-800">
-                {item.issuer}
-              </p>
-              <p className="text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-600 leading-normal">
-                {item.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+              {/* Bottom Row: Issuer & Details */}
+              <div className="space-y-2 pt-4 border-t border-white/10 dark:border-white/10 light:border-slate-200 relative z-10">
+                <h4 className="text-sm font-bold text-white dark:text-white light:text-slate-900 leading-snug">
+                  {item.issuer}
+                </h4>
+                <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed font-normal">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Bottom gradient accent line */}
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${theme.accent} opacity-40 group-hover:opacity-100 transition-opacity duration-500`} />
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
