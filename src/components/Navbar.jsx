@@ -44,11 +44,19 @@ export const Navbar = ({ theme, toggleTheme }) => {
 
   const scrollToSection = (id) => {
     setActiveSection(id);
+    const wasOpen = mobileMenuOpen;
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+
+    // Defer scroll slightly when mobile menu is open so height collapse transition doesn't interrupt scroll calculation
+    const delay = wasOpen ? 250 : 0;
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const yOffset = -80;
+        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
+    }, delay);
   };
 
   return (
@@ -167,10 +175,14 @@ export const Navbar = ({ theme, toggleTheme }) => {
                   return (
                     <motion.button
                       key={link.id}
+                      type="button"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.04 }}
-                      onClick={() => scrollToSection(link.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.id);
+                      }}
                       className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
                         isActive
                           ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-blue-400 dark:text-blue-400 light:text-blue-600 border border-blue-500/30 shadow-sm'
