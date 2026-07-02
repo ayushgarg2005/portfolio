@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaMoon, FaSun, FaBars, FaTimes, FaFileDownload } from 'react-icons/fa';
+import { 
+  FaMoon, FaSun, FaBars, FaTimes, FaFileDownload, 
+  FaHome, FaUser, FaLaptopCode, FaCode, FaTrophy, FaEnvelope, 
+  FaGithub, FaLinkedin, FaChevronRight 
+} from 'react-icons/fa';
 
 export const Navbar = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,12 +12,12 @@ export const Navbar = ({ theme, toggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Achievements', id: 'achievements' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Home', id: 'home', icon: <FaHome /> },
+    { name: 'About', id: 'about', icon: <FaUser /> },
+    { name: 'Skills', id: 'skills', icon: <FaLaptopCode /> },
+    { name: 'Projects', id: 'projects', icon: <FaCode /> },
+    { name: 'Achievements', id: 'achievements', icon: <FaTrophy /> },
+    { name: 'Contact', id: 'contact', icon: <FaEnvelope /> },
   ];
 
   useEffect(() => {
@@ -50,10 +54,12 @@ export const Navbar = ({ theme, toggleTheme }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-6">
       <nav
-        className={`max-w-5xl mx-auto transition-all duration-500 rounded-full ${
-          isScrolled
-            ? 'mt-4 py-2.5 px-5 glass-panel border border-white/10 dark:border-white/10 light:border-slate-200 shadow-2xl shadow-black/20 dark:shadow-black/20 light:shadow-slate-200/50'
-            : 'mt-6 py-4 px-6 bg-transparent border border-transparent'
+        className={`max-w-5xl mx-auto transition-all duration-500 ${
+          mobileMenuOpen
+            ? 'mt-4 py-4 px-5 rounded-3xl glass-panel border border-white/15 dark:border-white/15 light:border-slate-300 shadow-2xl bg-slate-950/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-2xl'
+            : isScrolled
+            ? 'mt-4 py-2.5 px-5 rounded-full glass-panel border border-white/10 dark:border-white/10 light:border-slate-200 shadow-2xl shadow-black/20 dark:shadow-black/20 light:shadow-slate-200/50'
+            : 'mt-6 py-4 px-6 rounded-full bg-transparent border border-transparent'
         }`}
       >
         <div className="flex items-center justify-between">
@@ -130,14 +136,15 @@ export const Navbar = ({ theme, toggleTheme }) => {
           <div className="flex items-center space-x-2 lg:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full border border-white/10 dark:border-white/10 light:border-slate-200 bg-white/5 dark:bg-white/5 light:bg-slate-100"
+              className="p-2 rounded-full border border-white/10 dark:border-white/10 light:border-slate-200 bg-white/5 dark:bg-white/5 light:bg-slate-100 cursor-pointer"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <FaSun className="text-amber-400 text-sm" /> : <FaMoon className="text-blue-600 text-sm" />}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-full border border-white/10 dark:border-white/10 light:border-slate-200 bg-white/5 dark:bg-white/5 light:bg-slate-100 text-slate-200 dark:text-slate-200 light:text-slate-800 focus:outline-none"
+              className="p-2.5 rounded-full border border-white/10 dark:border-white/10 light:border-slate-200 bg-white/5 dark:bg-white/5 light:bg-slate-100 text-slate-200 dark:text-slate-200 light:text-slate-800 focus:outline-none cursor-pointer"
+              aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <FaTimes className="text-sm" /> : <FaBars className="text-sm" />}
             </button>
@@ -151,32 +158,88 @@ export const Navbar = ({ theme, toggleTheme }) => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 pt-4 border-t border-white/10 dark:border-white/10 light:border-slate-200 space-y-1.5 overflow-hidden flex flex-col"
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="lg:hidden mt-4 pt-3 border-t border-white/10 dark:border-white/10 light:border-slate-200 space-y-2 overflow-hidden flex flex-col"
             >
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`text-left px-4 py-2.5 rounded-2xl font-semibold text-sm transition-colors ${
-                    activeSection === link.id
-                      ? 'bg-blue-600/20 text-blue-400 dark:text-blue-400 light:text-blue-600 border border-blue-500/30'
-                      : 'text-slate-300 dark:text-slate-300 light:text-slate-700 hover:bg-white/5'
-                  }`}
-                >
-                  {link.name}
-                </button>
-              ))}
-              <a
+              <div className="grid grid-cols-1 gap-1.5 py-1">
+                {navLinks.map((link, i) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <motion.button
+                      key={link.id}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      onClick={() => scrollToSection(link.id)}
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-blue-400 dark:text-blue-400 light:text-blue-600 border border-blue-500/30 shadow-sm'
+                          : 'text-slate-300 dark:text-slate-300 light:text-slate-700 hover:bg-white/5 dark:hover:bg-white/5 light:hover:bg-slate-100'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3.5">
+                        <span className={`text-base ${isActive ? 'text-blue-400' : 'text-slate-400'}`}>{link.icon}</span>
+                        <span>{link.name}</span>
+                      </div>
+                      {isActive ? (
+                        <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+                      ) : (
+                        <FaChevronRight className="text-xs text-slate-500 opacity-50" />
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+
+              {/* Mobile CTA Resume Button */}
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection('contact');
                 }}
-                className="flex items-center justify-center space-x-2 w-full py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm mt-2 shadow-lg"
+                className="flex items-center justify-center space-x-2.5 w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white font-bold text-sm shadow-lg shadow-blue-500/25 cursor-pointer mt-2"
               >
                 <FaFileDownload />
                 <span>Download Resume</span>
-              </a>
+              </motion.a>
+
+              {/* Quick Social Row inside mobile menu */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="pt-3 pb-1 flex items-center justify-center space-x-5 border-t border-white/10 dark:border-white/10 light:border-slate-200 text-slate-400"
+              >
+                <a
+                  href="https://github.com/ayushgarg2005"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl hover:bg-white/5 hover:text-white transition-colors"
+                  title="GitHub"
+                >
+                  <FaGithub className="text-lg" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ayushgarg2005"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl hover:bg-white/5 hover:text-blue-500 transition-colors"
+                  title="LinkedIn"
+                >
+                  <FaLinkedin className="text-lg text-blue-500" />
+                </a>
+                <a
+                  href="mailto:asdgarg0729@gmail.com"
+                  className="p-2.5 rounded-xl hover:bg-white/5 hover:text-sky-400 transition-colors"
+                  title="Email"
+                >
+                  <FaEnvelope className="text-lg text-sky-400" />
+                </a>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
