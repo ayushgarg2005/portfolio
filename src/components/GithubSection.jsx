@@ -35,36 +35,36 @@ export const GithubSection = () => {
       </motion.div>
 
       {/* Stats Counter Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <div className="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
-          <div className="p-3 rounded-xl bg-blue-500/10 text-blue-500"><FaFolderOpen className="text-xl" /></div>
-          <div>
-            <div className="text-2xl font-black font-display">{loading ? '...' : stats.repos}</div>
-            <div className="text-xs font-mono text-slate-400">Public Repos</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mb-12">
+        <div className="glass-panel p-4 sm:p-5 rounded-2xl flex items-center space-x-3.5 sm:space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
+          <div className="p-3 rounded-xl bg-blue-500/10 text-blue-500 flex-shrink-0"><FaFolderOpen className="text-xl" /></div>
+          <div className="min-w-0">
+            <div className="text-xl sm:text-2xl font-black font-display truncate">{loading ? '...' : stats.repos}</div>
+            <div className="text-xs font-mono text-slate-400 truncate">Public Repos</div>
           </div>
         </div>
 
-        <div className="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
-          <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400"><FaUserFriends className="text-xl" /></div>
-          <div>
-            <div className="text-2xl font-black font-display">{loading ? '...' : stats.followers}</div>
-            <div className="text-xs font-mono text-slate-400">Followers</div>
+        <div className="glass-panel p-4 sm:p-5 rounded-2xl flex items-center space-x-3.5 sm:space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
+          <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400 flex-shrink-0"><FaUserFriends className="text-xl" /></div>
+          <div className="min-w-0">
+            <div className="text-xl sm:text-2xl font-black font-display truncate">{loading ? '...' : stats.followers}</div>
+            <div className="text-xs font-mono text-slate-400 truncate">Followers</div>
           </div>
         </div>
 
-        <div className="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
-          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400"><FaCodeBranch className="text-xl" /></div>
-          <div>
-            <div className="text-2xl font-black font-display">{loading ? '...' : stats.following}</div>
-            <div className="text-xs font-mono text-slate-400">Following</div>
+        <div className="glass-panel p-4 sm:p-5 rounded-2xl flex items-center space-x-3.5 sm:space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
+          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 flex-shrink-0"><FaCodeBranch className="text-xl" /></div>
+          <div className="min-w-0">
+            <div className="text-xl sm:text-2xl font-black font-display truncate">{loading ? '...' : stats.following}</div>
+            <div className="text-xs font-mono text-slate-400 truncate">Following</div>
           </div>
         </div>
 
-        <div className="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
-          <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400"><FaStar className="text-xl" /></div>
-          <div>
-            <div className="text-2xl font-black font-display">1,240+</div>
-            <div className="text-xs font-mono text-slate-400">Total Commits</div>
+        <div className="glass-panel p-4 sm:p-5 rounded-2xl flex items-center space-x-3.5 sm:space-x-4 border border-white/10 dark:border-white/10 light:border-black/10">
+          <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400 flex-shrink-0"><FaStar className="text-xl" /></div>
+          <div className="min-w-0">
+            <div className="text-xl sm:text-2xl font-black font-display truncate">1,240+</div>
+            <div className="text-xs font-mono text-slate-400 truncate">Total Commits</div>
           </div>
         </div>
       </div>

@@ -65,7 +65,7 @@ export const Hero = () => {
 
           {/* Main Headings */}
           <div className="space-y-4">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black font-display tracking-tight leading-[1.08] text-white dark:text-white light:text-slate-900">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display tracking-tight leading-[1.08] text-white dark:text-white light:text-slate-900">
               Hi, I'm <br className="hidden sm:inline" />
               <span className="text-gradient">
                 {PERSONAL_INFO.name}
@@ -73,23 +73,23 @@ export const Hero = () => {
             </h1>
 
             {/* Typing Role Display */}
-            <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-300 dark:text-slate-300 light:text-slate-700">
-              <span className="text-blue-500 dark:text-blue-400 light:text-blue-600 mr-3 font-normal opacity-80">/</span>
-              <span>{currentText}</span>
-              <span className="w-0.5 h-6 sm:h-7 bg-blue-500 ml-1.5 animate-blink" />
+            <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start text-lg sm:text-2xl md:text-3xl font-bold font-mono text-slate-300 dark:text-slate-300 light:text-slate-700">
+              <span className="text-blue-500 dark:text-blue-400 light:text-blue-600 mr-2 sm:mr-3 font-normal opacity-80">/</span>
+              <span className="truncate">{currentText}</span>
+              <span className="w-0.5 h-6 sm:h-7 bg-blue-500 ml-1.5 animate-blink flex-shrink-0" />
             </div>
           </div>
 
           {/* Short Bio Description */}
-          <p className="text-base sm:text-lg text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
             {PERSONAL_INFO.bio}
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
             <button
               onClick={() => scrollToSection('projects')}
-              className="group px-7 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-bold text-sm shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-500 transform hover:-translate-y-0.5 flex items-center space-x-2.5"
+              className="group w-full sm:w-auto justify-center px-7 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-bold text-sm shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-500 transform hover:-translate-y-0.5 flex items-center space-x-2.5 cursor-pointer"
             >
               <FaCode className="group-hover:rotate-12 transition-transform duration-300" />
               <span>Explore Projects</span>
@@ -101,7 +101,7 @@ export const Hero = () => {
                 e.preventDefault();
                 scrollToSection('contact');
               }}
-              className="px-7 py-4 rounded-2xl border border-white/10 dark:border-white/10 light:border-slate-300 bg-white/5 dark:bg-white/5 light:bg-white hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-slate-50 text-white dark:text-white light:text-slate-900 font-semibold text-sm transition-all flex items-center space-x-2.5 shadow-sm"
+              className="w-full sm:w-auto justify-center px-7 py-4 rounded-2xl border border-white/10 dark:border-white/10 light:border-slate-300 bg-white/5 dark:bg-white/5 light:bg-white hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-slate-50 text-white dark:text-white light:text-slate-900 font-semibold text-sm transition-all flex items-center space-x-2.5 shadow-sm cursor-pointer"
             >
               <FaFileDownload className="text-blue-400" />
               <span>Download Resume</span>
@@ -109,7 +109,7 @@ export const Hero = () => {
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-6 py-4 rounded-2xl border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 font-semibold text-sm transition-all flex items-center space-x-2"
+              className="w-full sm:w-auto justify-center px-6 py-4 rounded-2xl border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 font-semibold text-sm transition-all flex items-center space-x-2 cursor-pointer"
             >
               <FaPaperPlane className="text-xs" />
               <span>Contact</span>
@@ -117,7 +117,7 @@ export const Hero = () => {
           </div>
 
           {/* Social Links Row */}
-          <div className="pt-6 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex items-center justify-center lg:justify-start space-x-4 text-slate-400">
+          <div className="pt-6 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-slate-400">
             <a
               href={PERSONAL_INFO.github}
               target="_blank"

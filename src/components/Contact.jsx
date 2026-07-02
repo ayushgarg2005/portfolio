@@ -71,7 +71,7 @@ export const Contact = () => {
 
         <a
           href={`mailto:${PERSONAL_INFO.email}?subject=Interview Invitation - Ayush Garg`}
-          className="px-8 py-4 rounded-2xl bg-white text-slate-950 font-bold text-sm hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl whitespace-nowrap transform hover:-translate-y-0.5 relative z-10 flex items-center space-x-2"
+          className="w-full sm:w-auto justify-center px-8 py-4 rounded-2xl bg-white text-slate-950 font-bold text-sm hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl whitespace-nowrap transform hover:-translate-y-0.5 relative z-10 flex items-center space-x-2"
         >
           <span>Schedule Interview</span>
         </a>

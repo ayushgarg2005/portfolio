@@ -32,6 +32,7 @@ export const Projects = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {PROJECTS_DATA.map((project, idx) => {
           const isBuilding = project.status === 'Currently Building';
+          const spanClass = idx === 2 && PROJECTS_DATA.length === 3 ? 'md:col-span-2 lg:col-span-1' : '';
 
           return (
             <motion.div
@@ -42,7 +43,7 @@ export const Projects = () => {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group relative border border-white/10 dark:border-white/10 light:border-slate-200 hover:border-blue-500/40 transition-all duration-500 shadow-xl hover:-translate-y-1.5"
+              className={`glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group relative border border-white/10 dark:border-white/10 light:border-slate-200 hover:border-blue-500/40 transition-all duration-500 shadow-xl hover:-translate-y-1.5 ${spanClass}`}
             >
               {/* Gradient accent glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/5 via-transparent to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

@@ -53,9 +53,10 @@ export const Achievements = () => {
       </motion.div>
 
       {/* Grid of Achievement Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {ACHIEVEMENTS_DATA.map((item, idx) => {
           const theme = getIconAndAccent(idx);
+          const spanClass = idx === 2 ? 'sm:col-span-2 lg:col-span-1' : '';
 
           return (
             <motion.div
@@ -65,7 +66,7 @@ export const Achievements = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.12 }}
               whileHover={{ y: -5 }}
-              className={`glass-panel p-7 sm:p-8 rounded-[2rem] flex flex-col justify-between space-y-6 transition-all duration-500 group cursor-default relative overflow-hidden border border-white/10 dark:border-white/10 light:border-slate-200 ${theme.glow}`}
+              className={`glass-panel p-6 sm:p-8 rounded-[2rem] flex flex-col justify-between space-y-6 transition-all duration-500 group cursor-default relative overflow-hidden border border-white/10 dark:border-white/10 light:border-slate-200 ${theme.glow} ${spanClass}`}
             >
               {/* Background ambient radial */}
               <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-500/10 via-violet-500/5 to-transparent rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />

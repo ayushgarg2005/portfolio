@@ -243,7 +243,7 @@ export const Skills = () => {
               </div>
 
               {/* Skills Proficiency Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 py-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-3.5 py-2">
                 {group.skills.map((skill) => {
                   const isLearning = skill.name.includes('(Learning)');
                   const cleanName = skill.name.replace(' (Learning)', '');
@@ -251,17 +251,17 @@ export const Skills = () => {
                   return (
                     <div
                       key={skill.name}
-                      className="p-3.5 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-slate-100/80 border border-white/5 dark:border-white/5 light:border-slate-200/80 hover:border-white/20 transition-all flex items-center justify-between group/skill shadow-sm"
+                      className="p-3 sm:p-3.5 rounded-2xl bg-white/5 dark:bg-white/5 light:bg-slate-100/80 border border-white/5 dark:border-white/5 light:border-slate-200/80 hover:border-white/20 transition-all flex items-center justify-between group/skill shadow-sm gap-2"
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2.5 rounded-xl bg-slate-950/40 dark:bg-slate-950/40 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 text-lg flex items-center justify-center group-hover/skill:scale-110 transition-transform shadow-inner">
+                      <div className="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+                        <div className="p-2 sm:p-2.5 rounded-xl bg-slate-950/40 dark:bg-slate-950/40 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 text-base sm:text-lg flex items-center justify-center group-hover/skill:scale-110 transition-transform shadow-inner flex-shrink-0">
                           {getSkillIcon(cleanName)}
                         </div>
-                        <span className="text-xs font-bold text-white dark:text-white light:text-slate-900 tracking-wide">
+                        <span className="text-xs font-bold text-white dark:text-white light:text-slate-900 tracking-wide truncate">
                           {cleanName}
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-white/5 dark:bg-white/5 light:bg-white text-slate-400 dark:text-slate-400 light:text-slate-600 border border-white/5 dark:border-white/5 light:border-slate-200 font-semibold">
+                      <span className="font-mono text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/5 dark:bg-white/5 light:bg-white text-slate-400 dark:text-slate-400 light:text-slate-600 border border-white/5 dark:border-white/5 light:border-slate-200 font-semibold flex-shrink-0">
                         {isLearning ? 'Learning' : 'Expert'}
                       </span>
                     </div>
