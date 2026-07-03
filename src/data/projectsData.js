@@ -45,7 +45,7 @@ export const PROJECTS_DATA = [
     description: "A video course hosting platform allowing instructors to upload content and manage pricing, while providing students with a dedicated storefront for browsing and purchasing. Secured with JWT, RBAC, Zod validation, and rate limiting.",
     techStack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     github: "https://github.com/ayushgarg2005/course-web-development",
-    liveDemo: "https://github.com/ayushgarg2005/course-web-development",
+    liveDemo: "https://course-web-development.vercel.app/",
     features: [
       "Built a video course hosting platform allowing instructors to upload content and manage pricing, while providing students with a dedicated storefront for browsing and purchasing.",
       "Secured the backend architecture using JWT authentication and custom middleware to enforce strict Role-Based Access Control (RBAC) across protected API routes.",
